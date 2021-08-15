@@ -9,12 +9,17 @@ val lwjglNatives = "natives-windows"
 val lwjglVersion = "3.2.3"
 var junitVersion = "5.7.2"
 
-dependencies {
-    implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
-    implementation("org.lwjgl", "lwjgl")
-    implementation("org.lwjgl", "lwjgl-glfw")
-    implementation("org.lwjgl", "lwjgl-opengl")
+dependencies {
+    api(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
+
+    api("org.lwjgl", "lwjgl")
+    api("org.lwjgl", "lwjgl-glfw")
+    api("org.lwjgl", "lwjgl-opengl")
 
     runtimeOnly("org.lwjgl", "lwjgl", classifier = lwjglNatives)
     runtimeOnly("org.lwjgl", "lwjgl-glfw", classifier = lwjglNatives)

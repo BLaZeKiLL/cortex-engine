@@ -1,7 +1,5 @@
 package io.codeblaze.cortex.engine.core;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,23 +11,19 @@ import org.lwjgl.opengl.GL33;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-@RequiredArgsConstructor
 public class Window {
 
     @Getter
     private final String title;
 
     @Getter
-    @NonNull
     private int width;
 
     @Getter
-    @NonNull
     private int height;
 
     @Getter
     @Setter
-    @NonNull
     private boolean vSync;
 
     @Getter
@@ -37,6 +31,13 @@ public class Window {
     private boolean resized = false;
 
     private long handle = NULL;
+
+    public Window(String title, int width, int height, boolean vSync) {
+        this.title = title;
+        this.width = width;
+        this.height = height;
+        this.vSync = vSync;
+    }
 
     public void init() {
         // Setup error callback
@@ -48,12 +49,12 @@ public class Window {
         }
 
         glfwDefaultWindowHints(); // optional, the current window hints are already the default
-        glfwWindowHint(GLFW_VISIBLE, GL33.GL_FALSE); // the window will stay hidden after creation
-        glfwWindowHint(GLFW_RESIZABLE, GL33.GL_TRUE); // the window will be resizable
+        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL33.GL_TRUE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
 
         // Create Window
         handle = glfwCreateWindow(width, height, title, NULL, NULL);

@@ -8,9 +8,14 @@ val lwjglNatives = "natives-windows"
 val lwjglVersion = "3.2.3"
 var junitVersion = "5.7.2"
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 application {
     mainClass.set("io.codeblaze.modelviewer.Main")
-//    mainModule.set("io.codeblaze.modelviewer")
+//    applicationDefaultJvmArgs = listOf("-Dorg.lwjgl.util.Debug=true", "-Dorg.lwjgl.util.DebugLoader=true")
 }
 
 dependencies {
