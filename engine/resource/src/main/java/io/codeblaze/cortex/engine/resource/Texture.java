@@ -20,9 +20,7 @@ public class Texture {
         this.id = GL33.glGenTextures();
         this.width = width;
         this.height = height;
-    }
 
-    public void bind() {
         GL33.glBindTexture(GL33.GL_TEXTURE_2D, id);
     }
 

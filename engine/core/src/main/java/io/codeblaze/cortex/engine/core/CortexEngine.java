@@ -44,7 +44,7 @@ public class CortexEngine implements Runnable {
 
         System.out.println("Initialized Engine");
 
-        game.init();
+        game.start();
 
         System.out.println("Initialized Game");
     }

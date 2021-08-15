@@ -9,6 +9,8 @@ dependencies {
     api("org.lwjgl", "lwjgl")
     api("org.lwjgl", "lwjgl-opengl")
 
+    api("org.joml", "joml", "${project.extra.get("jomlVersion")}")
+
     runtimeOnly("org.lwjgl", "lwjgl", classifier = "${project.extra.get("lwjglNatives")}")
     runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = "${project.extra.get("lwjglNatives")}")
 

@@ -1,15 +1,12 @@
 package io.codeblaze.cortex.engine.resource;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@AllArgsConstructor
+@Data
 public class RawModel {
 
-    @Getter
     private final int vaoId;
-
-    @Getter
     private final int vertexCount;
+    private final int triangleCount;
 
 }

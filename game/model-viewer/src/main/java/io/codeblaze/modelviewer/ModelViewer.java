@@ -12,7 +12,7 @@ public class ModelViewer implements IGame {
     private float color = 0.0f;
 
     @Override
-    public void init() throws Exception {
+    public void start() throws Exception {
 
     }
 

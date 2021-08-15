@@ -1,15 +1,11 @@
 package io.codeblaze.cortex.engine.resource;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@AllArgsConstructor
+@Data
 public class Model {
 
-    @Getter
     private final RawModel rawModel;
-
-    @Getter
     private final Material material;
 
 }
