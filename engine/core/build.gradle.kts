@@ -1,36 +1,31 @@
-plugins {
-    `java-library`
-    id("io.freefair.lombok") version "6.1.0"
-}
-
-group = "io.codeblaze.cortex.engine"
-
-val lwjglNatives = "natives-windows"
-val lwjglVersion = "3.2.3"
-var junitVersion = "5.7.2"
-
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = project.extra.get("sourceCompatibility") as JavaVersion
+    targetCompatibility = project.extra.get("targetCompatibility") as JavaVersion
 }
 
 dependencies {
-    api(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
+    api(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
 
     api("org.lwjgl", "lwjgl")
     api("org.lwjgl", "lwjgl-glfw")
     api("org.lwjgl", "lwjgl-opengl")
 
-    runtimeOnly("org.lwjgl", "lwjgl", classifier = lwjglNatives)
-    runtimeOnly("org.lwjgl", "lwjgl-glfw", classifier = lwjglNatives)
-    runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = lwjglNatives)
+    api("org.joml", "joml", "${project.extra.get("jomlVersion")}")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    runtimeOnly("org.lwjgl", "lwjgl", classifier = "${project.extra.get("lwjglNatives")}")
+    runtimeOnly("org.lwjgl", "lwjgl-glfw", classifier = "${project.extra.get("lwjglNatives")}")
+    runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = "${project.extra.get("lwjglNatives")}")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${project.extra.get("junitVersion")}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.extra.get("junitVersion")}")
 }
 
 tasks {
     test {
         useJUnitPlatform()
+    }
+
+    jar {
+        archiveBaseName.set("io.codeblaze.cortex.engine.core")
     }
 }

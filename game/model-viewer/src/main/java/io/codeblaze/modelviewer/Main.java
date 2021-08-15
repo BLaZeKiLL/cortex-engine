@@ -1,19 +1,14 @@
 package io.codeblaze.modelviewer;
 
-import io.codeblaze.cortex.engine.core.Window;
+import io.codeblaze.cortex.engine.core.CortexEngine;
 
 public class Main {
 
     public static void main(String[] args) {
-        var window = new Window("Model Viewer", 1280, 720, true);
+        var game = new ModelViewer();
+        var engine = new CortexEngine("Model Viewer", 1280, 720, true, game);
 
-        window.init();
-
-        window.setClearColor(1f, 1f, 1f, 1f);
-
-        while (!window.windowShouldClose()) {
-            window.update();
-        }
+        engine.start();
     }
 
 }

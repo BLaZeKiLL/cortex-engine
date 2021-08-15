@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="cortex:game:model-viewer [run]" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="Model Viewer Run" type="GradleRunConfiguration" factoryName="Gradle">
     <selectedOptions>
       <option name="external.system.vm.parameters.fragment" />
     </selectedOptions>
@@ -14,7 +14,7 @@
       <option name="taskNames">
         <list />
       </option>
-      <option name="vmOptions" />
+      <option name="vmOptions" value="" />
     </ExternalSystemSettings>
     <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
