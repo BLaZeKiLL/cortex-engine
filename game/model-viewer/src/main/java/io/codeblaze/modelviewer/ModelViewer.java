@@ -1,19 +1,23 @@
 package io.codeblaze.modelviewer;
 
+import io.codeblaze.cortex.engine.core.GameContext;
 import io.codeblaze.cortex.engine.core.IGame;
 import io.codeblaze.cortex.engine.core.Window;
+
 import org.joml.Math;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL33;
 
 public class ModelViewer implements IGame {
 
+    private GameContext context;
+
     private int direction = 0;
     private float color = 0.0f;
 
     @Override
-    public void start() throws Exception {
-
+    public void start(GameContext context) throws Exception {
+        this.context = context;
     }
 
     @Override
@@ -43,6 +47,11 @@ public class ModelViewer implements IGame {
         window.setClearColor(color, color, color, 1f);
 
         GL33.glClear(GL33.GL_COLOR_BUFFER_BIT | GL33.GL_DEPTH_BUFFER_BIT);
+    }
+
+    @Override
+    public void cleanUp() {
+
     }
 
 }

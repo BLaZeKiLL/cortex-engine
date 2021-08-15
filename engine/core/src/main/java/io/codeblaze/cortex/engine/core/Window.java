@@ -8,6 +8,8 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL33;
+import org.lwjgl.opengl.GLUtil;
+import org.lwjgl.system.Callback;
 
 import java.util.Objects;
 
@@ -33,6 +35,8 @@ public class Window {
     private boolean resized = false;
 
     private long handle = NULL;
+
+    private Callback debug;
 
     public Window(String title, int width, int height, boolean vSync) {
         this.title = title;
@@ -100,6 +104,8 @@ public class Window {
 
         // Initialize OpenGL
         GL.createCapabilities();
+
+        debug = GLUtil.setupDebugMessageCallback();
     }
 
     public void setClearColor(float r, float g, float b, float a) {
@@ -117,6 +123,18 @@ public class Window {
     public void update() {
         GLFW.glfwSwapBuffers(handle);
         GLFW.glfwPollEvents();
+    }
+
+    public void cleanUp() {
+        if (debug != null) {
+            debug.free();
+        }
+
+        // Unload OpenGL
+        GL.setCapabilities(null);
+
+        GLFW.glfwDestroyWindow(handle);
+        GLFW.glfwTerminate();
     }
 
 }

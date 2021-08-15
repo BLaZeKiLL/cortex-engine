@@ -12,7 +12,9 @@
             <option value="$PROJECT_DIR$/engine" />
             <option value="$PROJECT_DIR$/engine/core" />
             <option value="$PROJECT_DIR$/engine/importer" />
+            <option value="$PROJECT_DIR$/engine/renderer" />
             <option value="$PROJECT_DIR$/engine/resource" />
+            <option value="$PROJECT_DIR$/engine/shader" />
             <option value="$PROJECT_DIR$/engine/utils" />
             <option value="$PROJECT_DIR$/game/model-viewer" />
           </set>
