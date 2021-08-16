@@ -10,6 +10,7 @@ import lombok.NonNull;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Objects;
 
 public class Importer {
 
@@ -34,6 +35,10 @@ public class Importer {
 
     public Shader importShader(String path) throws Exception {
         return ShaderImporter.importShader(load(path), path);
+    }
+
+    public String getPath(String path) {
+        return Objects.requireNonNull(loader.getResource(path)).getFile();
     }
 
     public void cleanUp() {

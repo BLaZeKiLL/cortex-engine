@@ -27,6 +27,6 @@ tasks {
     }
 
     jar {
-        archiveBaseName.set("io.codeblaze.cortex.engine.utils")
+        archiveBaseName.set("io.codeblaze.cortex.engine.renderer")
     }
 }

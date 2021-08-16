@@ -1,27 +1,20 @@
-plugins {
-    application
-}
-
-group = "io.codeblaze"
-version = "1.0-SNAPSHOT"
-
 java {
     sourceCompatibility = project.extra.get("sourceCompatibility") as JavaVersion
     targetCompatibility = project.extra.get("targetCompatibility") as JavaVersion
 }
 
-application {
-    mainClass.set("io.codeblaze.modelviewer.Main")
-}
-
 dependencies {
-    implementation(project(":engine:core"))
-    implementation(project(":engine:utils"))
-    implementation(project(":engine:shader"))
-    implementation(project(":engine:entities"))
     implementation(project(":engine:resource"))
-    implementation(project(":engine:importer"))
-    implementation(project(":engine:renderer"))
+
+    api(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
+
+    api("org.lwjgl", "lwjgl")
+    api("org.lwjgl", "lwjgl-opengl")
+
+    api("org.joml", "joml", "${project.extra.get("jomlVersion")}")
+
+    runtimeOnly("org.lwjgl", "lwjgl", classifier = "${project.extra.get("lwjglNatives")}")
+    runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = "${project.extra.get("lwjglNatives")}")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${project.extra.get("junitVersion")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.extra.get("junitVersion")}")
@@ -33,6 +26,6 @@ tasks {
     }
 
     jar {
-        archiveBaseName.set("io.codeblaze.model-viewer")
+        archiveBaseName.set("io.codeblaze.cortex.engine.entities")
     }
 }

@@ -5,6 +5,7 @@ java {
 
 dependencies {
     implementation(project(":engine:resource"))
+    implementation(project(":engine:entities"))
 
     api(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
 
@@ -26,6 +27,6 @@ tasks {
     }
 
     jar {
-        archiveBaseName.set("io.codeblaze.cortex.engine.utils")
+        archiveBaseName.set("io.codeblaze.cortex.engine.shader")
     }
 }
