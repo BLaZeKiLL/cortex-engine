@@ -7,7 +7,7 @@ import org.joml.Vector3f;
 
 @Data
 @AllArgsConstructor
-public class GameModel {
+public class ModelEntity {
 
     private MaterialModel model;
     private Vector3f position;

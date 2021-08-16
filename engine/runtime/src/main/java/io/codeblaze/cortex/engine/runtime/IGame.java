@@ -4,7 +4,9 @@ import io.codeblaze.cortex.engine.core.Window;
 
 public interface IGame {
 
-    void start(GameContext context) throws Exception;
+    void init(GameContext context) throws Exception;
+
+    void start() throws Exception;
 
     void input(Window window);
 

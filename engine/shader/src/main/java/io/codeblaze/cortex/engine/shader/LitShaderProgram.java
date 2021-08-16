@@ -1,5 +1,6 @@
 package io.codeblaze.cortex.engine.shader;
 
+import io.codeblaze.cortex.engine.entities.Camera;
 import io.codeblaze.cortex.engine.entities.Light;
 import io.codeblaze.cortex.engine.resource.Material;
 import io.codeblaze.cortex.engine.resource.Shader;
@@ -54,8 +55,8 @@ public class LitShaderProgram extends ShaderProgram {
         ShaderProgram.loadUniformMatrix4x4f(uniform_ProjectionMatrix, matrix);
     }
 
-    public void loadViewMatrix(Matrix4f matrix) {
-        ShaderProgram.loadUniformMatrix4x4f(uniform_ViewMatrix, matrix);
+    public void loadViewMatrix(Camera camera) {
+        ShaderProgram.loadUniformMatrix4x4f(uniform_ViewMatrix, camera.getViewMatrix());
     }
 
     public void loadLight(Light light) {

@@ -4,8 +4,11 @@ java {
 }
 
 dependencies {
+    implementation(project(":engine:core"))
+    implementation(project(":engine:utils"))
     implementation(project(":engine:shader"))
     implementation(project(":engine:resource"))
+    implementation(project(":engine:entities"))
 
     implementation(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
 

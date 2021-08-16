@@ -5,6 +5,7 @@ import io.codeblaze.cortex.engine.core.Window;
 
 import io.codeblaze.cortex.engine.importer.Importer;
 
+import io.codeblaze.cortex.engine.renderer.CortexRenderer;
 import org.lwjgl.Version;
 
 public class CortexEngine implements Runnable {
@@ -23,8 +24,8 @@ public class CortexEngine implements Runnable {
     public CortexEngine(String title, int width, int height, boolean vSync, IGame game) {
         this.gameThread = new Thread(this, "GAME_THREAD");
         this.window = new Window(title, width, height, vSync);
-        this.game = game;
         this.timer = new Timer();
+        this.game = game;
     }
 
     public void start() {
@@ -56,9 +57,11 @@ public class CortexEngine implements Runnable {
 
         System.out.println("Initialized Game Context");
 
-        game.start(gameContext);
+        game.init(gameContext);
 
         System.out.println("Initialized Game");
+
+        game.start();
     }
 
     protected void loop() {
@@ -121,6 +124,9 @@ public class CortexEngine implements Runnable {
     }
 
     private void createGameContext() {
-        this.gameContext = new GameContext(new Importer(CortexEngine.class.getClassLoader()));
+        this.gameContext = new GameContext(
+                new Importer(CortexEngine.class.getClassLoader()),
+                new CortexRenderer(window)
+        );
     }
 }

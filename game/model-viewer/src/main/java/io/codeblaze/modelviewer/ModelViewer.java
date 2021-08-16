@@ -4,7 +4,9 @@ import io.codeblaze.cortex.engine.runtime.GameContext;
 import io.codeblaze.cortex.engine.runtime.IGame;
 import io.codeblaze.cortex.engine.core.Window;
 
+import io.codeblaze.cortex.engine.shader.LitShaderProgram;
 import org.joml.Math;
+import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL33;
 
@@ -16,8 +18,17 @@ public class ModelViewer implements IGame {
     private float color = 0.0f;
 
     @Override
-    public void start(GameContext context) throws Exception {
+    public void init(GameContext context) throws Exception {
         this.context = context;
+
+        var shader = new LitShaderProgram(this.context.getImporter().importShader("Shader/Lit.glsl"));
+
+        this.context.getRenderer().init(shader, new Vector4f(1f, 1f, 1f, 1f));
+    }
+
+    @Override
+    public void start() throws Exception {
+
     }
 
     @Override
