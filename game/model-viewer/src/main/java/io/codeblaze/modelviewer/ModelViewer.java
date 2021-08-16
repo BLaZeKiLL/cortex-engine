@@ -1,11 +1,17 @@
 package io.codeblaze.modelviewer;
 
+import io.codeblaze.cortex.engine.entities.Camera;
+import io.codeblaze.cortex.engine.entities.Light;
+import io.codeblaze.cortex.engine.entities.ModelEntity;
+import io.codeblaze.cortex.engine.resource.Material;
+import io.codeblaze.cortex.engine.resource.MaterialModel;
 import io.codeblaze.cortex.engine.runtime.GameContext;
 import io.codeblaze.cortex.engine.runtime.IGame;
 import io.codeblaze.cortex.engine.core.Window;
 
 import io.codeblaze.cortex.engine.shader.LitShaderProgram;
 import org.joml.Math;
+import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL33;
@@ -14,8 +20,11 @@ public class ModelViewer implements IGame {
 
     private GameContext context;
 
-    private int direction = 0;
-    private float color = 0.0f;
+    private ModelEntity entity;
+    private Light light;
+    private Camera camera;
+
+    private final Vector3f direction = new Vector3f(0, 0, 0);
 
     @Override
     public void init(GameContext context) throws Exception {
@@ -28,24 +37,43 @@ public class ModelViewer implements IGame {
 
     @Override
     public void start() throws Exception {
+        var model = new MaterialModel(
+                context.getImporter().importModel("Model/dragon.obj"),
+                new Material(context.getImporter().importTexture("Texture/black.png"), 10, 1)
+        );
 
+        entity = new ModelEntity(model, new Vector3f(0, -5, -20), new Vector3f(0, 0, 0), 1);
+        light = new Light(new Vector3f(0, 0, 0), new Vector3f(1, 1, 1));
+        camera = new Camera(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), 0.1f);
     }
 
     @Override
     public void input(Window window) {
-        if (window.isKeyPressed(GLFW.GLFW_KEY_UP)) {
-            direction = 1;
-        } else if (window.isKeyPressed(GLFW.GLFW_KEY_DOWN)) {
-            direction = -1;
-        } else {
-            direction = 0;
+        if (window.isKeyPressed(GLFW.GLFW_KEY_W)) {
+            direction.z = -1;
+        }
+        if (window.isKeyPressed(GLFW.GLFW_KEY_S)) {
+            direction.z = 1;
+        }
+        if (window.isKeyPressed(GLFW.GLFW_KEY_A)) {
+            direction.x = -1;
+        }
+        if (window.isKeyPressed(GLFW.GLFW_KEY_D)) {
+            direction.x = 1;
+        }
+        if (window.isKeyPressed(GLFW.GLFW_KEY_LEFT_CONTROL)) {
+            direction.y = -1;
+        }
+        if (window.isKeyPressed(GLFW.GLFW_KEY_LEFT_SHIFT)) {
+            direction.y = 1;
         }
     }
 
     @Override
     public void update(float delta) {
-        color += direction * 0.01f;
-        color = Math.clamp(0f, 1f, color);
+        camera.move(direction.mul(camera.getSpeed()));
+
+        entity.rotate(0, 1f, 0);
     }
 
     @Override
@@ -55,9 +83,9 @@ public class ModelViewer implements IGame {
             window.setResized(false);
         }
 
-        window.setClearColor(color, color, color, 1f);
+        context.getRenderer().process(entity);
 
-        GL33.glClear(GL33.GL_COLOR_BUFFER_BIT | GL33.GL_DEPTH_BUFFER_BIT);
+        context.getRenderer().render(light, camera);
     }
 
     @Override

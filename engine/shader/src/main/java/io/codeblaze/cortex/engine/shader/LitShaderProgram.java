@@ -29,7 +29,7 @@ public class LitShaderProgram extends ShaderProgram {
 
     @Override
     protected void bindAttributes() {
-        super.bindAttribute(0, "vertex");
+        super.bindAttribute(0, "position");
         super.bindAttribute(1, "uv0");
         super.bindAttribute(2, "normal");
     }

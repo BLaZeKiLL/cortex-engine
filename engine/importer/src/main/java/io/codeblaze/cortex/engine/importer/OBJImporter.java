@@ -60,16 +60,16 @@ public class OBJImporter {
             String[] vertex2 = currentLine[2].split("/");
             String[] vertex3 = currentLine[3].split("/");
 
-            processVertex(vertex1,triangles,uv0,normals,uv0Array,normalsArray);
-            processVertex(vertex2,triangles,uv0,normals,uv0Array,normalsArray);
-            processVertex(vertex3,triangles,uv0,normals,uv0Array,normalsArray);
+            processVertex(vertex1, triangles, uv0, normals, uv0Array, normalsArray);
+            processVertex(vertex2, triangles, uv0, normals, uv0Array, normalsArray);
+            processVertex(vertex3, triangles, uv0, normals, uv0Array, normalsArray);
 
             line = reader.readLine();
         }
 
         reader.close();
 
-        verticesArray = new float[vertices.size()*3];
+        verticesArray = new float[vertices.size() * 3];
         trianglesArray = new int[triangles.size()];
 
         int vertexPointer = 0;
@@ -84,7 +84,7 @@ public class OBJImporter {
             trianglesArray[i] = triangles.get(i);
         }
 
-        return context.bindRawModel(verticesArray, trianglesArray, normalsArray, uv0Array);
+        return context.bindRawModel(verticesArray, trianglesArray, uv0Array, normalsArray);
     }
 
     private static void processVertex(String[] vertex, List<Integer> triangles, List<Vector2f> uv0, List<Vector3f> normals, float[] uv0Array, float[] normalsArray) {
@@ -92,13 +92,13 @@ public class OBJImporter {
         triangles.add(currentVertexPointer);
 
         Vector2f uv = uv0.get(Integer.parseInt(vertex[1]) - 1);
-        uv0Array[currentVertexPointer*2] = uv.x;
-        uv0Array[currentVertexPointer*2+1] = uv.y; // 1 - Y may be needed
+        uv0Array[currentVertexPointer * 2] = uv.x;
+        uv0Array[currentVertexPointer * 2 + 1] = uv.y; // 1 - Y may be needed
 
         Vector3f currentNormal = normals.get(Integer.parseInt(vertex[2]) - 1);
-        normalsArray[currentVertexPointer*3] = currentNormal.x;
-        normalsArray[currentVertexPointer*3+1] = currentNormal.y;
-        normalsArray[currentVertexPointer*3+2] = currentNormal.z;
+        normalsArray[currentVertexPointer * 3] = currentNormal.x;
+        normalsArray[currentVertexPointer * 3 + 1] = currentNormal.y;
+        normalsArray[currentVertexPointer * 3 + 2] = currentNormal.z;
     }
 
 }

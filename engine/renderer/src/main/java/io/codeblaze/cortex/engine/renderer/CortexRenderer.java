@@ -123,7 +123,7 @@ public class CortexRenderer {
         shader.loadMaterial(model.getMaterial());
 
         GL33.glActiveTexture(GL33.GL_TEXTURE0);
-        GL33.glBindTexture(GL33.GL_TEXTURE_2D, model.getMaterial().getTextureId());
+        GL33.glBindTexture(GL33.GL_TEXTURE_2D, model.getMaterial().getTexture().getId());
     }
 
     private void unbindModel() {

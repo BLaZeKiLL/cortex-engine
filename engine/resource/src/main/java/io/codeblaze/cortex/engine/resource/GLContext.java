@@ -68,7 +68,7 @@ public class GLContext {
 
         GL33.glBufferData(GL33.GL_ARRAY_BUFFER, buffer, GL33.GL_STATIC_DRAW);
 
-        GL33.glVertexAttribPointer(attribute, size, GL33.GL_FLOAT, false, 0, MemoryUtil.NULL);
+        GL33.glVertexAttribPointer(attribute, size, GL33.GL_FLOAT, false, 0, 0);
 
         GL33.glBindBuffer(GL33.GL_ARRAY_BUFFER, 0); // Clear
     }
