@@ -1,6 +1,10 @@
-package io.codeblaze.cortex.engine.core;
+package io.codeblaze.cortex.engine.runtime;
+
+import io.codeblaze.cortex.engine.core.Timer;
+import io.codeblaze.cortex.engine.core.Window;
 
 import io.codeblaze.cortex.engine.importer.Importer;
+
 import org.lwjgl.Version;
 
 public class CortexEngine implements Runnable {

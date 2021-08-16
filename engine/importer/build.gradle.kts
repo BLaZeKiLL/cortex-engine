@@ -7,10 +7,12 @@ dependencies {
     implementation(project(":engine:utils"))
     implementation(project(":engine:resource"))
 
-    api(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
+    implementation(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
 
-    api("org.lwjgl", "lwjgl")
-    api("org.lwjgl", "lwjgl-opengl")
+    implementation("org.lwjgl", "lwjgl")
+    implementation("org.lwjgl", "lwjgl-opengl")
+
+    implementation("org.joml", "joml", "${project.extra.get("jomlVersion")}")
 
     implementation("org.lwjgl", "lwjgl-stb")
 

@@ -15,13 +15,7 @@ application {
 }
 
 dependencies {
-    implementation(project(":engine:core"))
-    implementation(project(":engine:utils"))
-    implementation(project(":engine:shader"))
-    implementation(project(":engine:entities"))
-    implementation(project(":engine:resource"))
-    implementation(project(":engine:importer"))
-    implementation(project(":engine:renderer"))
+    implementation(project(":engine:runtime"))
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${project.extra.get("junitVersion")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${project.extra.get("junitVersion")}")

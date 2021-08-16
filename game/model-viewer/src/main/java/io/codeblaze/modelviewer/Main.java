@@ -1,6 +1,6 @@
 package io.codeblaze.modelviewer;
 
-import io.codeblaze.cortex.engine.core.CortexEngine;
+import io.codeblaze.cortex.engine.runtime.CortexEngine;
 
 public class Main {
 

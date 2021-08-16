@@ -4,13 +4,21 @@ java {
 }
 
 dependencies {
-    implementation(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
+    api(project(":engine:core"))
+    api(project(":engine:utils"))
+    api(project(":engine:shader"))
+    api(project(":engine:entities"))
+    api(project(":engine:resource"))
+    api(project(":engine:importer"))
+    api(project(":engine:renderer"))
 
-    implementation("org.lwjgl", "lwjgl")
-    implementation("org.lwjgl", "lwjgl-glfw")
-    implementation("org.lwjgl", "lwjgl-opengl")
+    api(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
 
-    implementation("org.joml", "joml", "${project.extra.get("jomlVersion")}")
+    api("org.lwjgl", "lwjgl")
+    api("org.lwjgl", "lwjgl-glfw")
+    api("org.lwjgl", "lwjgl-opengl")
+
+    api("org.joml", "joml", "${project.extra.get("jomlVersion")}")
 
     runtimeOnly("org.lwjgl", "lwjgl", classifier = "${project.extra.get("lwjglNatives")}")
     runtimeOnly("org.lwjgl", "lwjgl-glfw", classifier = "${project.extra.get("lwjglNatives")}")
@@ -26,6 +34,6 @@ tasks {
     }
 
     jar {
-        archiveBaseName.set("io.codeblaze.cortex.engine.core")
+        archiveBaseName.set("io.codeblaze.cortex.engine.runtime")
     }
 }

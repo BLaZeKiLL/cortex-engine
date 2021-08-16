@@ -1,9 +1,8 @@
 package io.codeblaze.modelviewer;
 
-import io.codeblaze.cortex.engine.core.GameContext;
-import io.codeblaze.cortex.engine.core.IGame;
+import io.codeblaze.cortex.engine.runtime.GameContext;
+import io.codeblaze.cortex.engine.runtime.IGame;
 import io.codeblaze.cortex.engine.core.Window;
-import io.codeblaze.cortex.engine.shader.LitShaderProgram;
 
 import org.joml.Math;
 import org.lwjgl.glfw.GLFW;
@@ -19,8 +18,6 @@ public class ModelViewer implements IGame {
     @Override
     public void start(GameContext context) throws Exception {
         this.context = context;
-
-        System.out.println(new LitShaderProgram(this.context.getImporter().importShader("Lit.glsl")));
     }
 
     @Override

@@ -6,10 +6,10 @@ java {
 dependencies {
     implementation(project(":engine:utils"))
 
-    api(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
+    implementation(platform("org.lwjgl:lwjgl-bom:${project.extra.get("lwjglVersion")}"))
 
-    api("org.lwjgl", "lwjgl")
-    api("org.lwjgl", "lwjgl-opengl")
+    implementation("org.lwjgl", "lwjgl")
+    implementation("org.lwjgl", "lwjgl-opengl")
 
     runtimeOnly("org.lwjgl", "lwjgl", classifier = "${project.extra.get("lwjglNatives")}")
     runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = "${project.extra.get("lwjglNatives")}")
