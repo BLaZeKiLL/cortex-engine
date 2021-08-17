@@ -21,9 +21,9 @@ public class CortexEngine implements Runnable {
 
     private GameContext gameContext;
 
-    public CortexEngine(String title, int width, int height, boolean vSync, IGame game) {
+    public CortexEngine(String title, int width, int height, boolean vSync, boolean fullScreen, IGame game) {
         this.gameThread = new Thread(this, "GAME_THREAD");
-        this.window = new Window(title, width, height, vSync);
+        this.window = new Window(title, width, height, vSync, fullScreen);
         this.timer = new Timer();
         this.game = game;
     }

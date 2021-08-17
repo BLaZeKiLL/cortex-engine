@@ -32,17 +32,22 @@ public class Window {
 
     @Getter
     @Setter
+    private boolean fullScreen;
+
+    @Getter
+    @Setter
     private boolean resized = false;
 
     private long handle = NULL;
 
     private Callback debug;
 
-    public Window(String title, int width, int height, boolean vSync) {
+    public Window(String title, int width, int height, boolean vSync, boolean fullScreen) {
         this.title = title;
         this.width = width;
         this.height = height;
         this.vSync = vSync;
+        this.fullScreen = fullScreen;
     }
 
     public void init() {
@@ -63,7 +68,7 @@ public class Window {
         GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_FORWARD_COMPAT, GLFW.GLFW_TRUE);
 
         // Create Window
-        handle = GLFW.glfwCreateWindow(width, height, title, NULL, NULL);
+        handle = GLFW.glfwCreateWindow(width, height, title, fullScreen ? GLFW.glfwGetPrimaryMonitor() : NULL, NULL);
 
         if (handle == NULL) {
             throw new RuntimeException("Failed to create GLFW window");
@@ -106,10 +111,6 @@ public class Window {
         GL.createCapabilities();
 
         debug = GLUtil.setupDebugMessageCallback();
-    }
-
-    public void setClearColor(float r, float g, float b, float a) {
-        GL33.glClearColor(r, g, b, a);
     }
 
     public boolean isKeyPressed(int keyCode) {
