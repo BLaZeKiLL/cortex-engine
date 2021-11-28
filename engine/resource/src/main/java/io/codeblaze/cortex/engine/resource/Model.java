@@ -3,9 +3,9 @@ package io.codeblaze.cortex.engine.resource;
 import lombok.Data;
 
 @Data
-public class MaterialModel {
+public class Model {
 
-    private final RawModel rawModel;
+    private final Mesh mesh;
     private final Material material;
 
 }

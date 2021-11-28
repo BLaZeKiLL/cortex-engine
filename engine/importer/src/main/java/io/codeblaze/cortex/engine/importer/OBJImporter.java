@@ -1,7 +1,7 @@
 package io.codeblaze.cortex.engine.importer;
 
 import io.codeblaze.cortex.engine.resource.GLContext;
-import io.codeblaze.cortex.engine.resource.RawModel;
+import io.codeblaze.cortex.engine.resource.Mesh;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class OBJImporter {
 
-    public static RawModel importModel(InputStream stream, GLContext context, String path) throws Exception {
+    public static Mesh importModel(InputStream stream, GLContext context, String path) throws Exception {
         InputStreamReader fileReader = new InputStreamReader(stream);
         BufferedReader reader = new BufferedReader(fileReader);
 

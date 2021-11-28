@@ -1,6 +1,6 @@
 package io.codeblaze.cortex.engine.entities;
 
-import io.codeblaze.cortex.engine.resource.MaterialModel;
+import io.codeblaze.cortex.engine.resource.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.joml.Vector3f;
@@ -9,7 +9,7 @@ import org.joml.Vector3f;
 @AllArgsConstructor
 public class ModelEntity {
 
-    private MaterialModel model;
+    private Model model;
     private Vector3f position;
     private Vector3f rotation;
     private float scale;

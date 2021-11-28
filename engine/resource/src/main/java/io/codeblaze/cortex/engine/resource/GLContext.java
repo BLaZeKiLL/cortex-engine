@@ -3,7 +3,6 @@ package io.codeblaze.cortex.engine.resource;
 import io.codeblaze.cortex.engine.utils.BufferUtils;
 import lombok.NonNull;
 import org.lwjgl.opengl.GL33;
-import org.lwjgl.system.MemoryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class GLContext {
     private final List<Integer> ibos = new ArrayList<>();
     private final List<Integer> textures = new ArrayList<>();
 
-    public RawModel bindRawModel(float[] vertices, int[] triangles, float[] uv0, float[] normals) {
+    public Mesh bindRawModel(float[] vertices, int[] triangles, float[] uv0, float[] normals) {
         var vaoId = createVao();
 
         bindIndexBuffer(triangles);
@@ -26,7 +25,7 @@ public class GLContext {
 
         GL33.glBindVertexArray(0); // Clear
 
-        return new RawModel(vaoId, vertices.length, triangles.length);
+        return new Mesh(vaoId, vertices.length, triangles.length);
     }
 
     public Texture bindTexture(@NonNull Texture texture) {

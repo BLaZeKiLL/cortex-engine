@@ -1,7 +1,7 @@
 package io.codeblaze.cortex.engine.importer;
 
 import io.codeblaze.cortex.engine.resource.GLContext;
-import io.codeblaze.cortex.engine.resource.RawModel;
+import io.codeblaze.cortex.engine.resource.Mesh;
 import io.codeblaze.cortex.engine.resource.Shader;
 import io.codeblaze.cortex.engine.resource.Texture;
 
@@ -25,7 +25,7 @@ public class Importer {
         this.context = new GLContext();
     }
 
-    public RawModel importModel(String path) throws Exception {
+    public Mesh importModel(String path) throws Exception {
         return OBJImporter.importModel(load(path), context, path);
     }
 

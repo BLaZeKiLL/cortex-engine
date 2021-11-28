@@ -4,7 +4,7 @@ import io.codeblaze.cortex.engine.core.Window;
 import io.codeblaze.cortex.engine.entities.Camera;
 import io.codeblaze.cortex.engine.entities.Light;
 import io.codeblaze.cortex.engine.entities.ModelEntity;
-import io.codeblaze.cortex.engine.resource.MaterialModel;
+import io.codeblaze.cortex.engine.resource.Model;
 import io.codeblaze.cortex.engine.shader.LitShaderProgram;
 
 import io.codeblaze.cortex.engine.utils.MathUtils;
@@ -32,7 +32,7 @@ public class CortexRenderer {
 
     private Matrix4f projectionMatrix;
 
-    private final Map<MaterialModel, List<ModelEntity>> batches = new HashMap<>();
+    private final Map<Model, List<ModelEntity>> batches = new HashMap<>();
 
     public CortexRenderer(Window window) {
         this.window = window;
@@ -95,7 +95,7 @@ public class CortexRenderer {
     }
 
     private void renderBatches() {
-        for (MaterialModel model : batches.keySet()) {
+        for (Model model : batches.keySet()) {
             bindModel(model);
 
             var batch = batches.get(model);
@@ -103,7 +103,7 @@ public class CortexRenderer {
             for (var entity : batch) {
                 prepareEntity(entity);
 
-                GL33.glDrawElements(GL33.GL_TRIANGLES, model.getRawModel().getTriangleCount(), GL33.GL_UNSIGNED_INT, 0);
+                GL33.glDrawElements(GL33.GL_TRIANGLES, model.getMesh().getTriangleCount(), GL33.GL_UNSIGNED_INT, 0);
             }
 
             unbindModel();
@@ -114,8 +114,8 @@ public class CortexRenderer {
         shader.loadTransformationMatrix(MathUtils.createTransformationMatrix(entity.getPosition(), entity.getRotation(), entity.getScale()));
     }
 
-    private void bindModel(MaterialModel model) {
-        GL33.glBindVertexArray(model.getRawModel().getVaoId());
+    private void bindModel(Model model) {
+        GL33.glBindVertexArray(model.getMesh().getVaoId());
         GL33.glEnableVertexAttribArray(0);
         GL33.glEnableVertexAttribArray(1);
         GL33.glEnableVertexAttribArray(2);

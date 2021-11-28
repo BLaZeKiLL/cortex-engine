@@ -13,7 +13,7 @@ subprojects {
 
     // LWJGL Versions
     project.extra.apply {
-        set("lwjglVersion", "3.2.3")
+        set("lwjglVersion", "3.3.0")
         set("lwjglNatives", "natives-windows")
 
         set("jomlVersion", "1.10.1")

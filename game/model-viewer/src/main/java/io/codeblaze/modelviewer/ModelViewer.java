@@ -4,13 +4,12 @@ import io.codeblaze.cortex.engine.entities.Camera;
 import io.codeblaze.cortex.engine.entities.Light;
 import io.codeblaze.cortex.engine.entities.ModelEntity;
 import io.codeblaze.cortex.engine.resource.Material;
-import io.codeblaze.cortex.engine.resource.MaterialModel;
+import io.codeblaze.cortex.engine.resource.Model;
 import io.codeblaze.cortex.engine.runtime.GameContext;
 import io.codeblaze.cortex.engine.runtime.IGame;
 import io.codeblaze.cortex.engine.core.Window;
 
 import io.codeblaze.cortex.engine.shader.LitShaderProgram;
-import org.joml.Math;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.glfw.GLFW;
@@ -37,7 +36,7 @@ public class ModelViewer implements IGame {
 
     @Override
     public void start() throws Exception {
-        var model = new MaterialModel(
+        var model = new Model(
                 context.getImporter().importModel("Model/dragon.obj"),
                 new Material(context.getImporter().importTexture("Texture/black.png"), 10, 1)
         );
