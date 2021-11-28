@@ -1,3 +1,4 @@
 # Cortex Engine
 
-Just a glorified game loop
+Simple game loop with resource loading and engine abstractions.
+provides a starting point for OpenGL applications powered by LWJGL.
